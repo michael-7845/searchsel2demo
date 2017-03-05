@@ -15,6 +15,7 @@ import org.testng.annotations.DataProvider;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.firefox.FirefoxDriver;
+import org.openqa.selenium.htmlunit.HtmlUnitDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.testng.annotations.AfterClass;
@@ -36,6 +37,7 @@ public class SearchTestSuite {
 		DesiredCapabilities capability = DesiredCapabilities.firefox();
 		capability.setCapability(CapabilityType.ACCEPT_SSL_CERTS, true);
 		driver=new FirefoxDriver(capability);
+//		driver=new HtmlUnitDriver(capability); //use HtmlUnitDriver instead of FireFoxDriver
 		search = new SearchBar(driver);
 		result = new ResultPage(driver);
 		auto = new AutoTips(driver);
