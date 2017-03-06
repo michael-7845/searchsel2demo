@@ -8,6 +8,7 @@ import java.util.List;
 import com.yu.demo.page.AutoTips;
 import com.yu.demo.page.GoodsPage;
 import com.yu.demo.page.SearchBar;
+import com.yu.demo.service.SearchAction;
 import com.yu.demo.page.ResultPage;
 
 import org.testng.annotations.BeforeMethod;
@@ -31,6 +32,7 @@ public class SearchTestSuite {
 	ResultPage result;
 	AutoTips auto;
 	GoodsPage goods;
+	SearchAction searchAct;
 	
 	@BeforeClass
 	public void beforeClass() {
@@ -42,6 +44,8 @@ public class SearchTestSuite {
 		result = new ResultPage(driver);
 		auto = new AutoTips(driver);
 		goods = new GoodsPage(driver);
+		
+		searchAct = new SearchAction(driver);
 	}
 	
 	@AfterClass
@@ -72,13 +76,11 @@ public class SearchTestSuite {
 	//TC02 使用关键字成功搜索出内容
 	@Test(enabled=true)
 	public void testCase02_1() {
-		search.element(SearchBar.input).sendKeys("a b");
-		search.element(SearchBar.input).submit();
+		searchAct.submit("a b");
 		thinkTime(3000);
 		assertTrue(result.element(ResultPage.resultText).getText().endsWith("Products found"));
 		
-		search.element(SearchBar.input).sendKeys("a c");
-		search.element(SearchBar.find).click();
+		searchAct.click("a b");
 		thinkTime(3000);
 		assertTrue(result.element(ResultPage.resultText).getText().endsWith("Products found"));
 		
@@ -105,8 +107,7 @@ public class SearchTestSuite {
 	//TC03 搜索结果正确可用
 	@Test(enabled=true)
 	public void testCase03() {
-		search.element(SearchBar.input).sendKeys("mandarine");
-		search.element(SearchBar.input).submit();
+		searchAct.submit("mandarine");
 		thinkTime(3000);
 		
 		//记录条数正确
@@ -152,8 +153,7 @@ public class SearchTestSuite {
     @Test(dataProvider="keys04", enabled=true)
     public void testCase04(String key){
         System.out.println("Key: "+ key);
-        search.element(SearchBar.input).sendKeys(key);
-		search.element(SearchBar.input).submit();
+		searchAct.submit(key);
 		thinkTime(3000);
 		if(result.doesElementExist(ResultPage.noneResult)) {
 			assertTrue(result.element(ResultPage.noneResult).getText().trim().startsWith("0 items found for keyword"));
@@ -186,8 +186,7 @@ public class SearchTestSuite {
     @Test(dataProvider="keys05", enabled=true)
     public void testCase05(String key){
         System.out.println("Key: "+ key);
-        search.element(SearchBar.input).sendKeys(key);
-		search.element(SearchBar.input).submit();
+        searchAct.submit(key);
 		thinkTime(3000);
 		if(result.doesElementExist(ResultPage.noneResult)) {
 			assertTrue(result.element(ResultPage.noneResult).getText().trim().startsWith("0 items found for keyword"));

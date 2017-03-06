@@ -4,6 +4,10 @@ import org.openqa.selenium.By;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * page object for search result.
+ * An example for page object layer.
+ */
 public class ResultPage extends PageObject {
 	
 	public static By resultText = By.className("pagination-bar-results"); 

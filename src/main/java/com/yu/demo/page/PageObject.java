@@ -7,6 +7,9 @@ import org.openqa.selenium.NoSuchElementException;
 import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.WebElement;
 
+/**
+ * The base class for the page unit layer
+ */
 public class PageObject {
 	protected WebDriver driver;
 	

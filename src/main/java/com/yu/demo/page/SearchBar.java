@@ -7,6 +7,10 @@ import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.CapabilityType;
 import org.openqa.selenium.remote.DesiredCapabilities;
 
+/**
+ * page object for search bar.
+ * An example for page object layer.
+ */
 public class SearchBar extends PageObject{
 	
 	// web elements initilization
